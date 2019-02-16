@@ -1,0 +1,43 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+/* SET APPLICATION SPECIFIC STYLING */
+.setapp-lobby-container {
+  margin: 1em;
+}
+
+.setapp-card {
+  margin: .5em;
+  border: 1px solid;
+  border-radius: 1em;
+}
+
+.setapp-card-selected {
+  border: 3px solid;
+}
+
+.setapp-card-content {
+  margin: .5em 0;
+}
+
+.setapp-shape {
+  padding: 0px;
+}
+
+.setapp-game-title {
+  font-size: 5vh;
+  margin-top: 2vh;
+  margin-bottom: 1vh;
+}
