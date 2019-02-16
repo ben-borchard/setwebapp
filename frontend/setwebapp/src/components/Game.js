@@ -173,7 +173,7 @@ class Game extends Component {
         <Grid fluid="true">
           {game ? (
             <Row>
-              <Col md={2}>
+              <Col xs={12} md={2}>
                 <p>{info}</p>
                 {game.winner ? (
                   <p><Button disabled>I FOUND A SET!</Button></p>
@@ -196,9 +196,9 @@ class Game extends Component {
                   <p><Button disabled>Request Three More</Button></p>
                 )}
                 <p><Button onClick={this.leaveGame}>Leave Game</Button></p>
-                <p><Button onClick={this.findSet}>Find Set</Button></p>
+                <p><Button onClick={this.findSet} style={{display:"none"}}>Find Set</Button></p>
               </Col>
-              <Col md={10}>
+              <Col xs={12} md={10}>
                 <Board cardSelected={cardSelected} cards={boardCards} />
               </Col>
             </Row>

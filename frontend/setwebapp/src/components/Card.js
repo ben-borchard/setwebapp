@@ -77,15 +77,15 @@ class Card extends Component {
       <div onClick={this.select}>
         <Grid fluid="true" className={"setapp-card"+(this.state.selected ? " setapp-card-selected" : "")}>
           <Row className="setapp-card-content">
-            { number === 2 && <Col md="2" /> }
-            { number === 1 && <Col md="4" /> }
+            { number === 2 && <Col xs={2} sm={2} md={2} lg={2} /> }
+            { number === 1 && <Col xs={4} sm={4} md={4} lg={4} /> }
             {shapes.map(shapeInst => (
-              <Col md={4} className="setapp-shape text-center center-block">
+              <Col xs={4} sm={4} md={4} lg={4} className="setapp-shape text-center center-block">
                 {shapeInst}
               </Col>
             ))}
-            { number === 2 && <Col md="2" /> }
-            { number === 1 && <Col md="4" /> }
+            { number === 2 && <Col xs={2} sm={2} md={2} lg={2} /> }
+            { number === 1 && <Col xs={4} sm={4} md={4} lg={4} /> }
           </Row>
         </Grid>
       </div>

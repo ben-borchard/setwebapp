@@ -10,21 +10,21 @@ class BoardRow extends Component {
   render() {
     return (
       <Row>
-        <Col md={4}>
+        <Col xs={4} sm={4} md={4} lg={4}>
           <Card select={this.props.cardSelected} 
                 card={this.props.cards[0].card} 
                 index={this.props.cards[0].index} 
                 height={this.props.height} 
           />
         </Col>
-        <Col md={4}>
+        <Col xs={4} sm={4} md={4} lg={4}>
           <Card select={this.props.cardSelected} 
                 card={this.props.cards[1].card} 
                 index={this.props.cards[1].index} 
                 height={this.props.height} 
           />
         </Col>
-        <Col md={4}>
+        <Col xs={4} sm={4} md={4} lg={4}>
           <Card select={this.props.cardSelected} 
                 card={this.props.cards[2].card} 
                 index={this.props.cards[2].index} 
