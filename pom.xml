@@ -46,6 +46,13 @@
   </properties>
 
   <build>
+    <resources>
+      <!-- add react build output as static resources for spring boot -->
+      <resource>
+        <directory>${basedir}/frontend/setwebapp/build</directory>
+        <targetPath>static</targetPath>
+      </resource>
+    </resources>
     <plugins>
       <plugin>
         <groupId>com.github.eirslett</groupId>
