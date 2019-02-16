@@ -100,6 +100,9 @@ class Game extends Component {
     
     // users as jsx
     let renderedUsers = [];
+    
+    // initialize a loop variable
+    let i = 0;
 
     if (game) {
       // if someone is looking for a set
@@ -117,7 +120,7 @@ class Game extends Component {
       }
 
       // wrap cards
-      for (var i = 0; i < game.board.length; i++) {
+      for (i = 0; i < game.board.length; i++) {
         boardCards.push({
           index: i,  // attach the index so card can pass it back when selected
           card: game.board[i]
@@ -128,7 +131,7 @@ class Game extends Component {
       canRequestThreeMore = game.deck !== 0;
 
       // get users 
-      for (var i = 0; i < game.users.length; i++) {
+      for (i = 0; i < game.users.length; i++) {
         const user = game.users[i];
         // base
         let userJsx = (<span>{user.name} : {user.sets}</span>);
