@@ -9,6 +9,7 @@ golive.sh
 
 # production
 /build
+/node
 
 # misc
 .DS_Store
