@@ -3,7 +3,7 @@ import SockJS from 'sockjs-client';
 import Stomp from 'stomp-websocket';
 
 import React, { Component } from 'react';
-import { Grid, Row, Col, Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 import Board from './Board.js'
 
@@ -168,12 +168,11 @@ class Game extends Component {
     }
 
     return (
-      <div>
-        <h1 class="setapp-game-title">Game: {this.state.name}</h1>
-        <Grid fluid="true">
+      <div class="setapp-game">
+        <div class="setapp-game-title">Game: {this.state.name}</div>
           {game ? (
-            <Row>
-              <Col xs={2} sm={2} md={2} lg={2} >
+            <React.Fragment>
+              <div class="setapp-game-info" >
                 <p>{info}</p>
                 {game.winner ? (
                   <p><Button disabled>I FOUND A SET!</Button></p>
@@ -197,15 +196,14 @@ class Game extends Component {
                 )}
                 <p><Button onClick={this.leaveGame}>Leave Game</Button></p>
                 <p><Button onClick={this.findSet} style={{display:"none"}}>Find Set</Button></p>
-              </Col>
-              <Col xs={10} sm={10} md={10} lg={10} >
+              </div>
+              <div class="setapp-game-board">
                 <Board cardSelected={cardSelected} cards={boardCards} />
-              </Col>
-            </Row>
+              </div>
+            </React.Fragment>
           ) : (
-            <p>Loading...</p>
+            <div class="setapp-game-loading">Loading...</div>
           )}
-        </Grid>
       </div>
     )
   }

@@ -10,11 +10,9 @@ class Shape extends Component {
 
   render() {
 
-    // convert height to use viewport units
-    const height = this.props.facets.height + "vh";
     const path = this.getPath();
     return (
-      <svg height={height} viewBox="0 0 100 160">
+      <svg height="100%" width="100%" viewBox="0 0 100 160">
         <path d={path} stroke={this.props.facets.color} 
                        stroke-width="2" 
                        fill={this.props.facets.color}

@@ -1,7 +1,6 @@
 // src/components/Card.js
 
 import React, { Component } from 'react';
-import { Grid, Row, Col } from 'react-bootstrap';
 
 import Oval from './Oval.js'
 import Diamond from './Diamond.js'
@@ -54,8 +53,8 @@ class Card extends Component {
       opacity = "1";
     }
 
-    // put all facets (include height into one object)
-    const facets = { height: this.props.height, opacity: opacity, color: color };
+    // put all facets
+    const facets = { opacity: opacity, color: color };
 
     // shape
     let shape;
@@ -70,24 +69,20 @@ class Card extends Component {
     // number
     const number = this.props.card.number === 'ONE' ? 1 : this.props.card.number === 'TWO' ? 2 : 3;
     const shapes = [];
+    let columnTemplate = ""
     for (var i=0;i<number;i++) {
       shapes.push(shape);
+      columnTemplate += "auto "
     }
     return (
-      <div onClick={this.select}>
-        <Grid fluid="true" className={"setapp-card"+(this.state.selected ? " setapp-card-selected" : "")}>
-          <Row className="setapp-card-content">
-            { number === 2 && <Col xs={2} sm={2} md={2} lg={2} /> }
-            { number === 1 && <Col xs={4} sm={4} md={4} lg={4} /> }
-            {shapes.map(shapeInst => (
-              <Col xs={4} sm={4} md={4} lg={4} className="setapp-shape text-center center-block">
-                {shapeInst}
-              </Col>
-            ))}
-            { number === 2 && <Col xs={2} sm={2} md={2} lg={2} /> }
-            { number === 1 && <Col xs={4} sm={4} md={4} lg={4} /> }
-          </Row>
-        </Grid>
+      <div onClick={this.select} 
+           className={"setapp-card"+(this.state.selected ? " setapp-card-selected" : "")}
+           style={{"grid-template-columns": columnTemplate}}>
+        {shapes.map(shapeInst => (
+          <React.Fragment>
+            {shapeInst}
+          </React.Fragment>
+        ))}
       </div>
     )
   }
