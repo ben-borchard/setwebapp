@@ -4,6 +4,7 @@ import Stomp from 'stomp-websocket';
 
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
+import Popup from 'reactjs-popup';
 
 import Board from './Board.js'
 
@@ -97,25 +98,35 @@ class Game extends Component {
 
     // whether to disable the request three more button
     let canRequestThreeMore = false;
+
+    // whether to disable the found set button
+    let canFindSet = true;
     
     // users as jsx
     let renderedUsers = [];
+
+    // number of sets current user has
+    let userSets = 0;
     
     // initialize a loop variable
     let i = 0;
 
+    // background color
+    let bgColor = "lightblue"
+
     if (game) {
+
       // if someone is looking for a set
       if (game.userFindingSet) {
+        canFindSet = false;
         // if this user is looking for a set
         if (game.userFindingSet.sessionId === this.state.sessionId) {
+          bgColor = "lightgreen";
           cardSelected = this.cardSelected;
-          info = (<h3>You found a set!<br></br>
-          Click on the three cards in the set to submit it!<br></br>
-          You have <b>{game.timer}</b> seconds left</h3>);
+          info = (<div>You have <b>{game.timer}</b> seconds left to submit a set</div>);
         } else {
-          info = (<span>User <b>{game.userFindingSet.name}</b> found a set<br></br>
-          {game.userFindingSet.name} has <b>{game.timer}</b> seconds left to submit the set</span>);
+          bgColor = "lightcoral";
+          info = (<div>User <b>{game.userFindingSet.name}</b> has <b>{game.timer}</b> seconds left to submit a set</div>);
         }
       }
 
@@ -137,6 +148,7 @@ class Game extends Component {
         let userJsx = (<span>{user.name} : {user.sets}</span>);
         // current user?
         if (user.sessionId === this.state.sessionId) {
+          userSets = user.sets;
           userJsx = (<b>{userJsx} (you)</b>);
         }
         // voted for three more?
@@ -153,6 +165,7 @@ class Game extends Component {
       // if the game is over
       if (game.winner) {
         canRequestThreeMore = false;
+        canFindSet = false;
         if (game.winner.sessionId === this.state.sessionId) {
           info =  (<h3>YOU WON!!!</h3>)
         } else {
@@ -168,34 +181,45 @@ class Game extends Component {
     }
 
     return (
-      <div class="setapp-game">
+      <div class="setapp-game" style={{"background-color": bgColor}}>
         <div class="setapp-game-title">Game: {this.state.name}</div>
           {game ? (
             <React.Fragment>
-              <div class="setapp-game-info" >
-                <p>{info}</p>
-                {game.winner ? (
-                  <p><Button disabled>I FOUND A SET!</Button></p>
-                ) : (
+              <div class="setapp-game-setbutton">
+                {canFindSet ? (
                   <p><Button onClick={this.foundSet}>I FOUND A SET!</Button></p>
+                ) : (
+                  <React.Fragment>{ info }</React.Fragment>
                 )}
-                <p>Players in game:</p>
-                <ul>
-                  {renderedUsers.map(user => (
-                    <li>
-                      {user}
-                    </li>
-                  ))}
-                </ul>
-                <p>Cards left in deck: {game.deck}</p>
-                <p>Players requesting three: {game.addThreeVotes}</p>
+              </div>
+              <div class="setapp-game-setnum">
+                You have {userSets} sets
+              </div>
+              <div class="setapp-game-requestthree">
                 {canRequestThreeMore ? (
                   <p><Button onClick={this.addThree}>Request Three More</Button></p>
                 ) : (
                   <p><Button disabled>Request Three More</Button></p>
                 )}
-                <p><Button onClick={this.leaveGame}>Leave Game</Button></p>
-                <p><Button onClick={this.findSet} style={{display:"none"}}>Find Set</Button></p>
+                
+              </div>
+              <div class="setapp-game-infobutton">
+                <Popup trigger={<Button>Info</Button>} modal>
+                  <div class="setapp-game-info" >
+                    <p>Players in game:</p>
+                    <ul>
+                      {renderedUsers.map(user => (
+                        <li>
+                          {user}
+                        </li>
+                      ))}
+                    </ul>
+                    <p>Cards left in deck: {game.deck}</p>
+                    <p>Players requesting three: {game.addThreeVotes}</p>
+                    <p><Button onClick={this.leaveGame}>Leave Game</Button></p>
+                    <p><Button onClick={this.findSet} style={{ display: "none" }}>Find Set</Button></p>
+                  </div>
+                </Popup>
               </div>
               <div class="setapp-game-board">
                 <Board cardSelected={cardSelected} cards={boardCards} />

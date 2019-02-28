@@ -23,16 +23,26 @@ code {
   height: 100vh;
   width: 100vw;
   display: grid;
-  grid-template-columns: 15% 85%;
-  grid-template-rows: 5% 95%;
+  grid-template-columns: 20% 40% 10% 20% 10%;
+  grid-template-rows: 7% 92%;
 }
 
 .setapp-game-title,
 .setapp-game-loading {
-  font-size: 250%;
-  grid-column-start: 1;
-  grid-column-end: 3;
+  font-size: 200%;
   text-align: center;
+}
+
+.setapp-game-setbutton,
+.setapp-game-setnum,
+.setapp-game-requestthree,
+.setapp-game-infobutton {
+  text-align: center;
+}
+
+.setapp-game-board {
+  grid-column-start: 1;
+  grid-column-end: 6;
 }
 
 .setapp-game-board-grid {
@@ -54,6 +64,7 @@ code {
   height: 100%;
   width: 100%;
   display: grid;
+  background-color: white;
 }
 
 .setapp-card-selected {
